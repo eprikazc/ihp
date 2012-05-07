@@ -1,0 +1,378 @@
+[
+  {
+    "pk": 1, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "AusAID", 
+      "project": 1, 
+      "name": "AUSAID", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "AfDB", 
+      "project": 1, 
+      "name": "African Development Bank", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Belgium", 
+      "project": 1, 
+      "name": "BELGIUM", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Germany", 
+      "project": 1, 
+      "name": "Germany", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Norway", 
+      "project": 1, 
+      "name": "NORWAY", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Spain", 
+      "project": 1, 
+      "name": "SPAIN", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Sweden", 
+      "project": 1, 
+      "name": "SWEDEN", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "EC", 
+      "project": 1, 
+      "name": "THE EUROPEAN COMMISSION", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "GAVI", 
+      "project": 1, 
+      "name": "THE GAVI ALLIANCE", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "GFATM", 
+      "project": 1, 
+      "name": "THE GLOBAL FUND TO FIGHT AIDS, TB & MALARIA", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Netherlands", 
+      "project": 1, 
+      "name": "THE NETHERLANDS", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "UK", 
+      "project": 1, 
+      "name": "THE UNITED KINGDOM", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "World Bank", 
+      "project": 1, 
+      "name": "THE WORLD BANK", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "WHO", 
+      "project": 1, 
+      "name": "THE WORLD HEALTH ORGANIZATION", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "UNAIDS", 
+      "project": 1, 
+      "name": "UNAIDS", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "UNFPA", 
+      "project": 1, 
+      "name": "UNFPA", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "UNICEF", 
+      "project": 1, 
+      "name": "UNICEF", 
+      "entity_type": "agency"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Benin", 
+      "project": 1, 
+      "name": "Government of Benin", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Burkina Faso", 
+      "project": 1, 
+      "name": "Government of Burkina Faso", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Burundi", 
+      "project": 1, 
+      "name": "Government of Burundi", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "DRC", 
+      "project": 1, 
+      "name": "Government of DRC", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Djibouti", 
+      "project": 1, 
+      "name": "Government of Djibouti", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "El Salvador", 
+      "project": 1, 
+      "name": "Government of El Salvador", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Ethiopia", 
+      "project": 1, 
+      "name": "Government of Ethiopia", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Mali", 
+      "project": 1, 
+      "name": "Government of Mali", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Mauritania", 
+      "project": 1, 
+      "name": "Government of Mauritania", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Mozambique", 
+      "project": 1, 
+      "name": "Government of Mozambique", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Nepal", 
+      "project": 1, 
+      "name": "Government of Nepal", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Niger", 
+      "project": 1, 
+      "name": "Government of Niger", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Nigeria", 
+      "project": 1, 
+      "name": "Government of Nigeria", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Rwanda", 
+      "project": 1, 
+      "name": "Government of Rwanda", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Senegal", 
+      "project": 1, 
+      "name": "Government of Senegal", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Sierra Leone", 
+      "project": 1, 
+      "name": "Government of Sierra Leone", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Sudan", 
+      "project": 1, 
+      "name": "Government of Sudan", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Togo", 
+      "project": 1, 
+      "name": "Government of Togo", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "scorecard_processor.entity", 
+    "fields": {
+      "abbreviation": "Uganda", 
+      "project": 1, 
+      "name": "Government of Uganda", 
+      "entity_type": "government"
+    }
+  }, 
+  {
+    "pk": "agency", 
+    "model": "scorecard_processor.entitytype", 
+    "fields": {
+      "project": 1, 
+      "plural": "agencies"
+    }
+  }, 
+  {
+    "pk": "government", 
+    "model": "scorecard_processor.entitytype", 
+    "fields": {
+      "project": 1, 
+      "plural": "Governments"
+    }
+  }
+]

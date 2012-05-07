@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block head_title %}Survey selection for {{object.name}}{% endblock %}
+{% block fluid_content_outer %}
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1>{{object.name}} <small>manage surveys</small></h1>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <h3>Data Series <a class="btn small" href="/admin/scorecard_processor/dataseriesgroup/add/">+</a></h3>
+            {% for series in object.dataseriesgroup_set.select_related %}
+            <dl>
+              <dt class="label {% if series.name == "Country" %}notice{% endif %}">{{series.name}} <a class="" href="/admin/scorecard_processor/dataseriesgroup/{{series.pk}}/">edit</a></dt>
+              <dd>
+                {% for item in series.get_dataseries %}
+                  {{item.name}}{% if forloop.revcounter0 %}, {% endif %}
+                {% endfor %}
+              </dd>
+            </dl>
+            {% endfor %}
+        </div>
+        <div class="span8 well">
+          <h3>Surveys <a class="btn small" href="/admin/scorecard_processor/survey/add/">+</a></h3>
+            
+            <ul>
+            {% for survey in object.survey_set.all %}
+              <li>{% if not survey.active %}<span class="label" title="Users cannot submit responses">inactive</span>{% endif %} <a href="{{survey.get_absolute_url}}">{{survey.name}}</a> (<a href="{{survey.get_absolute_url}}responses/">view {% with survey.responseset_set.count as count %}{{count}} response{{count|pluralize}}{% endwith %}</a>)</li>
+            {% endfor %}
+            </ul>
+            <div class="row">
+              <div class="span8"> 
+                <h3>Scorecards <a class="btn small" href="/admin/scorecard_processor/scorecard/add/">+</a></h3>
+                  <ul>
+                  {% for scorecard in object.scorecard_set.visible %}
+                    <li><a href="{{scorecard.get_absolute_url}}">{{scorecard.name}}</a><br />
+                    Reports: 
+                    <ul>
+                    {% for report in scorecard.reportrun_set.all %}
+                      <li><a href="{{report.get_absolute_url}}">{{report.name}}</a> (<a href="{{report.get_absolute_url}}run/">view output</a>)</li>
+                    {% endfor %}
+                    </ul>
+                    {% include "scorecard_processor/_project_scorecard_reports.html" %}
+                    </li>
+                  {% endfor %}
+                  </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span8"> 
+                <h3>Other Reports</h3>
+                  <ul>
+                  {% for link, name in object.get_report_links %}
+                    <li><a href="{{link}}">{{name}}</a><br />
+                  {% endfor %}
+                  </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <h3>Entities <a class="btn small" href="/admin/scorecard_processor/entity/add/">+</a></h3>
+          {% regroup object.entity_set.all by entity_type.plural as entity_list %}
+          {% for entity_type in entity_list %}
+          <div class="span7">
+            <h2>{{entity_type.grouper|capfirst}}</h2>
+            <ul>
+            {% for entity in entity_type.list %}
+              {% include 'scorecard_processor/_project_entity_display.html' %}
+            {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+
+        </div>
+    </div>
+  </div>
+{% endblock %}

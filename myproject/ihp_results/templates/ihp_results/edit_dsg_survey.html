@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block head_title %}{% blocktrans with survey.i18n.name as survey_name and entity.name as entity_name%}Response to {{survey_name}} for {{entity_name}}{% endblocktrans %}{% endblock %}
+{% block script_bottom %}
+{{block.super}}
+<style>
+  .legend.span5 {clear:left}
+  .fields.span10 {float:right}
+  label .identifier {margin-right:0.5em;}
+  .form-stacked .clearfix div.input {clear:left;padding:5px 0 20px 20px}
+  .input .currency {margin-right:0.5em;}
+  select.currency_select {display:none}
+  a.glossary_term {font-weight:bold;border-bottom:dotted 1px #386; color:#386;cursor:help}
+  #definitions {position:fixed;top:0;left:0;width:100%;height:100%;background:#aaa;background:RGBA(95,95,95,0.5);z-index:1000;display:none}
+  #definitions .term {display:none}
+  .modal .modal-body {max-height: 300px; overflow:auto}
+  .question_group {padding-left:20px}
+  .question_group label.question {margin-bottom:10px;}
+  .question_group > div {float:left;margin-left:20px;max-width:350px}
+
+  .actions .btn {display:none}
+    .start #continue {display:block}
+    .normal #save_continue{display:block}
+    .finish #save{display:block}
+</style>
+<script type="text/javascript">
+$('input.hidden, select.hidden, textarea.hidden').each(function(i,e){
+  //Hide form elements if they are disabled
+  $(e).parent('div').parent('div').hide()
+})
+function set_currency(currency) {
+  $('select.currency_select').each(function(i,e){
+    $(e).val(currency);
+  }) 
+}
+$('select#id_currency').change(function(e){
+  set_currency($(e.target).val());
+})
+set_currency($('select#id_currency').val());
+
+$('ul.tabs').tabs();
+$('ul.tabs').bind('change', function (e) {
+  //window.console.log() // activated tab
+  var el=$('a',$($(e.target).parent()).next('li'))
+  if (el.length) {
+    var href=el.attr('href');
+    $('#next').attr('value',href.substring(1));
+  } else {
+    $('#next').attr('value','');
+  }
+  var tab=$(e.target).parent()
+  if (tab.attr('id') == 'intro_tab') {
+    $('.actions').removeClass('normal');
+    $('.actions').removeClass('finish');
+    $('.actions').addClass('start');
+  } else if (tab.hasClass('last_tab')) {
+    $('.actions').removeClass('start');
+    $('.actions').removeClass('normal');
+    $('.actions').addClass('finish');
+  } else {
+    $('.actions').removeClass('start');
+    $('.actions').removeClass('finish');
+    $('.actions').addClass('normal');
+  }
+  parse_defs();
+})
+$('#continue').bind('click', function(e) {
+  $($('.tabs li a')[1]).click();
+  e.preventDefault();
+})
+
+next = false;
+if (window.location.hash) {next = window.location.hash;}
+if ($('.error').length) {
+  next = '#'+$($('.error')[0]).parents('div.tab-pane').attr('id');
+}
+
+if (next) {
+  $('a',next.replace('#','#t')).click();
+}
+
+var terms = Array();
+$('.term').each(function (i,e) {
+  terms.push({term:$(e).attr('data-term'), id:$(e).attr('id')})
+})
+
+function parse_defs() {
+  var pane = $('.tab-pane.active')
+  if ((pane.data('parsed_def')==undefined) && ($(terms).length)) {
+    $('label, legend, div.intro', pane).each(function(i,e) {
+      $(terms).each(function(j,f) {
+        var test = $(e).html().split(f.term);
+        if (test.length > 1) {
+          var result = $(test.join("<a class='glossary_term' data-id='"+f.id+"' title='{% trans "Click to see definition" %}'>"+f.term+"</a>"));
+          var join = true;
+          $('.glossary_term', result).each(function(z,x){
+            if ($(x).attr('data-id').indexOf('glossary_term')>0) {
+              join = false;
+              return false;
+            }
+          })
+          if (join){
+            $(e).html(result);
+          }
+          //Do we want to keep finding more defs?
+        }
+      });
+    });
+    pane.data('parsed_def',true);
+  }
+}
+
+$('a.glossary_term').live({ 
+  click:function(e) {
+    $('#definitions').fadeIn('fast');
+    $('#'+$(this).data('id')).modal('show');
+  },
+})
+$('.modal a.close').live({click:function(e){
+  $('#definitions').fadeOut('fast');
+}})
+$('#definitions').bind({click:function(e){
+  $('.modal:visible a.close').click();
+}})
+
+$(document).ready(function () {
+  parse_defs();
+})
+
+</script>
+{% endblock %}
+
+{% block fluid_content_outer %}
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1>{{survey.i18n.name}} <small>for <a href="{{entity.get_absolute_url}}">{{entity.name}}</a> - {{data_series}}</small></h1>
+      </div>
+      <form method="POST" class="form-stacked">
+          {% csrf_token %}
+          <div class="row">
+            <div class="offset1 span13">
+              <ul class="tabs">
+                <li class="active" id="intro_tab"><a href="#intro">Overview</a></li>
+                {% for group in survey.questiongroup_set.all %}
+                  <li id="tqg_{{group.pk|slugify}}" class="{% if forloop.last %}last_tab{%endif %}"><a href="#qg_{{group.pk|slugify}}">{{forloop.counter}}</a></li>
+                {% endfor %}
+              </ul>
+              <div class="form tab-content">
+                <div class="tab-pane active" id="intro">
+                  <p>{{survey.i18n.description|safe}}</p>
+                  <div class="row">
+                    <div class="span4">
+                      <label>{{form.currency.label}}</label>
+                      <div>{{form.currency}}</div>
+                    </div>
+
+                    <div class="span4">
+                      <label>{{form.baseline_year.label}}</label>
+                      <div>{{form.baseline_year}}</div>
+                    </div>
+
+                    <div class="span4">
+                      <label>{{form.current_year.label}}</label>
+                      <div>{{form.current_year}}</div>
+                    </div>
+                  </div>
+                </div>
+                {{form.as_div}}
+              </div>
+              <input type="hidden" id="next" name="next" value="" />
+              <div class="actions start">
+                  <p>{% blocktrans %}Download 2011 data <a target="_blank" href="http://ihpresults.net/results/data/">here</a>{% endblocktrans %}</p>
+                  <button               id="continue" class="btn primary large pull-right">{% blocktrans %}Continue{%endblocktrans%}</button>
+                  <button type="submit" id="save_continue" class="pull-right btn primary large">{% blocktrans %}Save and continue{% endblocktrans %}</button> &nbsp;
+                  <button type="submit" id="save" class="pull-right btn primary large">{% blocktrans %}Save and submit{% endblocktrans %}</button> &nbsp;
+              </div>
+            </div>
+            
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="definitions" style="display:none">
+      {% for term in entity.project.get_glossary %}
+        <div class='modal term' id="{{term.term|slugify}}" data-term="{{term.term}}" data-position="center center">
+          <div class="modal-header">
+            <a class="close" href="#">×</a>
+            <h3>{{term.term}}</h3>
+          </div>
+          <div class="modal-body">{{term.definition.definition|linebreaksbr|urlize}}</div>
+        </div>
+      {% endfor %}
+  </div>
+{% endblock %}
