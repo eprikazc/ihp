@@ -125,9 +125,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
 
-    'ihp_results',
-
     'scorecard_processor',
+    'ihp_results',
     'guardian',
 
     # Uncomment the next line to enable the admin:
