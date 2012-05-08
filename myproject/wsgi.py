@@ -13,7 +13,7 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
+import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), "myproject")))
 
 
