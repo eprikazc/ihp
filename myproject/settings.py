@@ -118,6 +118,10 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, "templates")
 )
 
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, "static")
+]
+
 INSTALLED_APPS = (
 
     #Internal django deps
